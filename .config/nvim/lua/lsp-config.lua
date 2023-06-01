@@ -1,3 +1,5 @@
+local nvim_lsp = require('lspconfig')
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -14,8 +16,15 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-require('lspconfig')['clangd'].setup{
-  on_atach = c_on_attach,
+local c_on_attach = function(client, bufnr)
+  on_attach(client, bufnr)
+
+  -- Use default tag function (ctags)
+  vim.api.nvim_buf_set_option(bufnr, 'tagfunc', '' )
+end
+
+nvim_lsp.clangd.setup {
+  on_attach = c_on_attach,
   flags = lsp_flags,
 }
 
