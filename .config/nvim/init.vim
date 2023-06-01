@@ -24,8 +24,10 @@ call plug#begin()
 
 call plug#end()
 
-" Source the matflo vimrc
-source ~/.vimrc
+" Source the matflo vimrc if it exists
+if filereadable("~/.vimrc")
+  source ~/.vimrc
+endif
 
 " Set colour scheme
 if (has("termguicolors"))
