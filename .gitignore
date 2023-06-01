@@ -1,3 +1,4 @@
 .config/tmux/plugins
 .config/matflo_cli_package_manager
 .config/nvim/syntax
+.*
